@@ -28,7 +28,7 @@ for hook in hooks:
     if len(date) > 0:
         date = date[0][1:] #removing $
     else:
-        date = None
+        date = "2000-01-01"
 
     out = io.StringIO()
     out.write("---\nlayout: post\n")
@@ -41,6 +41,8 @@ for hook in hooks:
     out.write("".join(lines[1:]))
     text = out.getvalue()
     text = text.replace("\n![](__capa.jpg)", "")
+    while "![](__" in text:
+        text = text.replace("![](__", "![](" + REMOTE + "/" + hook + "/__")
     with open(TARGET + os.sep + date + "-" + title + ".md", "w") as f:
         f.write(text)
 

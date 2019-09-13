@@ -4,7 +4,7 @@ layout: main
 
 <main class="home" id="post" role="main" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
     <div id="grid" class="row flex-grid">
-        {% for post in paginator.posts %}
+        {% for post in paginator.posts reversed %}
             <article class="box-item" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
                 <span class="category">
                     <a href="{{ site.url }}{{ site.baseurl }}/category/{{ post.category }}">
@@ -23,10 +23,6 @@ layout: main
                         </a>
                     </div>
                     <div class="box-info">
-                        <meta itemprop="datePublished" content="{{ post.date | date_to_xmlschema }}">
-                        <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}" class="date">
-                            {% include date.html date=post.date %}
-                        </time>
                         <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
                             <h2 class="post-title" itemprop="name">
                                 {{ post.title }}
