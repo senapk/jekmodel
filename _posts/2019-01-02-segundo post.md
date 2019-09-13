@@ -1,7 +1,7 @@
 ---
 layout: post
 title: segundo post
-image: https://github.com/senapk/jekmodel/tree/master/base/001/__capa.jpg
+image: https://raw.githubusercontent.com/senapk/jekmodel/master/base/001/__capa.jpg
 tags:
 - empty
 ---

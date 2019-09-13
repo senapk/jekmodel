@@ -7,7 +7,7 @@ import shutil
 
 BASE = "base"
 TARGET = "_posts"
-REMOTE = 'https://github.com/senapk/jekmodel/tree/master/base'
+REMOTE = 'https://raw.githubusercontent.com/senapk/jekmodel/master/base'
 
 shutil.rmtree(TARGET)
 os.mkdir(TARGET)
@@ -29,10 +29,6 @@ for hook in hooks:
         date = date[0][1:] #removing $
     else:
         date = None
-    
-    print(title)
-    print(date)
-    print(tags)
 
     out = io.StringIO()
     out.write("---\nlayout: post\n")
