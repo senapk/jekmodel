@@ -3,10 +3,14 @@
 
 import os
 import io
+import shutil
 
 BASE = "base"
 TARGET = "_posts"
+REMOTE = 'https://github.com/senapk/jekmodel/tree/master/base'
 
+shutil.rmtree(TARGET)
+os.mkdir(TARGET)
 hooks = os.listdir(BASE)
 for hook in hooks:
     lines = []
@@ -31,9 +35,18 @@ for hook in hooks:
     print(tags)
 
     out = io.StringIO()
-    out.write("---\nlayout: post")
+    out.write("---\nlayout: post\n")
     out.write("title: " + title + '\n')
-    out.write()
+    out.write("image: " + REMOTE + "/" + hook + "/__capa.jpg\n")
+    out.write("tags:\n")
+    for t in tags:
+        out.write("- " + t + "\n")
+    out.write("---\n")
+    out.write("".join(lines[1:]))
+    text = out.getvalue()
+    text = text.replace("[](__capa.jpg)", "")
+    with open(TARGET + os.sep + date + "-" + title + ".md", "w") as f:
+        f.write(text)
 
 """
 ---
@@ -45,7 +58,10 @@ category: 'blog'
 twitter_text: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 introduction: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 ---
-
+tags:
+- vuejs
+- javascript
+- tutorial
     
 """
 
