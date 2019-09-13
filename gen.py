@@ -40,7 +40,7 @@ for hook in hooks:
     out.write("---\n")
     out.write("".join(lines[1:]))
     text = out.getvalue()
-    text = text.replace("[](__capa.jpg)", "")
+    text = text.replace("\n![](__capa.jpg)", "")
     with open(TARGET + os.sep + date + "-" + title + ".md", "w") as f:
         f.write(text)
 
